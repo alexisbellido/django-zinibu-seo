@@ -1,0 +1,7 @@
+include CHANGELOG
+include INSTALL
+include LICENSE
+include AUTHORS
+include MANIFEST.in
+include README.rst
+recursive-include znbmain *
