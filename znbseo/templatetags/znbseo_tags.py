@@ -27,3 +27,9 @@ def canonical(request, object=None):
     return {
         'url': get_absolute_url(object, False)
     }
+
+@register.inclusion_tag('znbseo/google_analytics.html')
+def google_analytics():
+    return {
+        'is_production': is_production
+    }
