@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 
 from znbmain.models import Article
 from znbmain.utils import get_absolute_url, is_production
@@ -31,5 +32,6 @@ def canonical(request, object=None):
 @register.inclusion_tag('znbseo/google_analytics.html')
 def google_analytics():
     return {
-        'is_production': is_production
+        'is_production': is_production,
+        'tracking_id': getattr(settings, 'ZNBSEO_GA_ID', '')
     }
