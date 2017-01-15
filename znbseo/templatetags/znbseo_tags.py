@@ -1,7 +1,7 @@
 from django import template
 from django.conf import settings
 
-from znbmain.models import Article
+from znbmain.models import BaseContent
 from znbmain.utils import get_absolute_url, is_production
 
 
@@ -15,7 +15,7 @@ def robots_snippet(request, object=None, index=True):
     """
     meta_robots = "noindex, nofollow"
     if is_production and index:
-        if (object and object.status == Article.LIVE_STATUS) or (request.path == '/'):
+        if (object and object.status == BaseContent.LIVE_STATUS) or (request.path == '/'):
             meta_robots = "index, follow"
     return {
         'meta_robots': meta_robots
