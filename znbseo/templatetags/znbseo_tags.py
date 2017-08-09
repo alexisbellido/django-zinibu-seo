@@ -1,3 +1,5 @@
+import logging
+
 from django import template
 from django.conf import settings
 
@@ -25,8 +27,15 @@ def robots_snippet(request, object=None, index=True):
 def canonical(request, object=None):
     if not object:
         url = request.path
+    else:
+        url = get_absolute_url(object, False)
+
+    if getattr(settings, 'DEBUG', False):
+        logger = logging.getLogger(__name__)
+        logger.info("Log canonical URL: %s" % url)
+
     return {
-        'url': get_absolute_url(object, False)
+        'url': url
     }
 
 @register.inclusion_tag('znbseo/google_analytics.html')
